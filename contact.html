@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - Mammopath</title>
+  <title>Schedule a Demo - Mammopath</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -17,41 +18,52 @@
   </nav>
 
   <!-- Header -->
-  <header class="header hero">
+  <header class="header hero" data-aos="fade-down">
     <div class="hero-content">
       <img src="images/logo.gif" alt="Mammopath Logo" class="logo" />
-      <h1>Contact Us</h1>
-      <p class="tagline">We'd love to hear from you</p>
+      <h1>Schedule a Demo</h1>
+      <p class="tagline">We'd love to walk you through Mammopath</p>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="content">
-    <section class="split-section" style="align-items: center; justify-content: center;">
-      <div class="text" style="max-width: 500px;" data-aos="fade-up">
+    <section class="split-section reverse" data-aos="fade-up">
+      <img src="images/lets-connect.png" alt="Schedule Demo" data-aos="fade-right" />
+
+      <div class="text" style="max-width: 500px; margin: 0 auto;" data-aos="fade-left">
         <form>
-          <label for="name">Your Name:</label><br>
-          <input id="name" type="text" required /><br>
+          <label for="name">Your Name:</label>
+          <input id="name" type="text" required />
 
-          <label for="email">Your Email:</label><br>
-          <input id="email" type="email" required /><br>
+          <label for="email">Your Email:</label>
+          <input id="email" type="email" required />
 
-          <label for="message">Message:</label><br>
-          <textarea id="message" rows="5" required></textarea><br>
+          <label for="date">Preferred Date:</label>
+          <input id="date" type="date" required />
 
-          <button type="submit">Send Message</button>
+          <label for="time">Preferred Time:</label>
+          <input id="time" type="time" required />
+
+          <label for="notes">Additional Notes:</label>
+          <textarea id="notes" rows="4" placeholder="Tell us what you'd like to explore..."></textarea>
+
+          <button type="submit">Request Demo</button>
         </form>
       </div>
-
-      <img src="images/lets-connect.png" alt="Let's Connect" data-aos="fade-left" style="max-width: 400px; width: 100%; border-radius: 12px;" />
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" data-aos="fade-up">
     <img src="images/logo.gif" alt="Mammopath Logo" class="footer-logo" />
     <p>© 2025 Mammopath</p>
   </footer>
 
+  <!-- AOS Animation Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 2000, once: true });
+  </script>
 </body>
 </html>

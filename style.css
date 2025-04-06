@@ -109,7 +109,7 @@ body {
     display: block;
     margin: 0 auto 0.5rem auto;
   }
-  
+
   @media (max-width: 768px) {
     .split-section {
       flex-direction: column !important;
@@ -219,5 +219,62 @@ body {
   
   .auth-form button:hover {
     background-color: #e60073;
+  }
+  
+  form {
+    background-color: #fff0f6;
+    border: 1px solid #ffc1e3;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.15);
+    font-size: 1rem;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #880e4f;
+  }
+  
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ffc1e3;
+    border-radius: 10px;
+    background-color: #fff;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+  }
+  
+  form input:focus,
+  form textarea:focus {
+    outline: none;
+    border-color: #ff66a3;
+    box-shadow: 0 0 0 2px rgba(255, 102, 163, 0.3);
+  }
+  
+  form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  form button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff66a3;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #e05591;
   }
   
