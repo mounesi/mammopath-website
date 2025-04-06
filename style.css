@@ -109,6 +109,26 @@ body {
     display: block;
     margin: 0 auto 0.5rem auto;
   }
+ 
+  @media (max-width: 768px) {
+    .split-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    /* ✅ override reverse layout on mobile */
+    .split-section.reverse {
+      flex-direction: column; /* no row-reverse on small screens */
+    }
+  
+    .split-section img {
+      order: 2; /* ✅ make sure image comes after text */
+    }
+  
+    .split-section.reverse .text {
+      order: 1; /* ✅ and text comes first */
+    }
+  }
   
   /* Responsive Design */
   @media (max-width: 768px) {
@@ -138,5 +158,51 @@ body {
       flex-direction: column;
       gap: 0.5rem;
     }
+  }
+ 
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin: 2rem 0;
+  }
+  
+  .auth-form {
+    background: #ffe6f0;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    width: 300px;
+  }
+  
+  .auth-form h2 {
+    margin-top: 0;
+    color: #880e4f;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .auth-form button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #ff3399;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auth-form button:hover {
+    background-color: #e60073;
   }
   
