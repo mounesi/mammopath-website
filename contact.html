@@ -7,23 +7,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Navigation -->
   <nav class="nav" data-aos="fade-in">
     <a href="index.html">Home</a>
     <a href="auth.html">Sign In / Sign Up</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <header class="header">
-    <img src="images/logo.gif" alt="Mammopath Logo" class="logo" />
-    <h1>Contact Us</h1>
-    <p>We'd love to hear from you</p>
+
+  <!-- Header -->
+  <header class="header hero">
+    <div class="hero-content">
+      <img src="images/logo.gif" alt="Mammopath Logo" class="logo" />
+      <h1>Contact Us</h1>
+      <p class="tagline">We'd love to hear from you</p>
+    </div>
   </header>
 
+  <!-- Main Content -->
   <main class="content">
-    <section class="split-section reverse">
-      <img src="images/lets-connect.png" alt="Let's Connect" />
-
-      <div class="text" style="max-width: 500px;">
+    <section class="split-section" style="align-items: center; justify-content: center;">
+      <div class="text" style="max-width: 500px;" data-aos="fade-up">
         <form>
           <label for="name">Your Name:</label><br>
           <input id="name" type="text" required /><br>
@@ -37,12 +42,16 @@
           <button type="submit">Send Message</button>
         </form>
       </div>
+
+      <img src="images/lets-connect.png" alt="Let's Connect" data-aos="fade-left" style="max-width: 400px; width: 100%; border-radius: 12px;" />
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <img src="images/logo.gif" alt="Mammopath Logo" class="footer-logo" />
     <p>© 2025 Mammopath</p>
   </footer>
+
 </body>
 </html>

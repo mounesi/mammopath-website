@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Mammopath</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS (Animate On Scroll) Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav class="nav" data-aos="fade-in">
     <a href="index.html">Home</a>
     <a href="auth.html">Sign In / Sign Up</a>
@@ -15,7 +19,8 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <header class="header hero">
+  <!-- Header -->
+  <header class="header hero" data-aos="fade-down">
     <div class="hero-content">
       <img src="images/logo.gif" alt="Mammopath Logo" class="logo" />
       <h1>About Mammopath</h1>
@@ -23,22 +28,47 @@
     </div>
   </header>  
 
+  <!-- Main Content -->
   <main class="content" style="text-align: center; max-width: 800px; margin: 0 auto;">
-    <img src="images/about-us.png" alt="About Our Team" style="max-width: 100%; border-radius: 12px; margin-bottom: 2rem;" />
+    <img src="images/about-us.png" alt="About Our Team" 
+         style="max-width: 100%; border-radius: 12px; margin-bottom: 2rem;" 
+         data-aos="fade-up" />
 
-    <p><strong>Mammopath</strong> was founded with a single vision: to revolutionize breast cancer treatment through AI and data-driven support. Our tools are designed to bring clarity and support during one of life’s most difficult journeys.</p>
+    <p data-aos="fade-up" data-aos-delay="100">
+      <strong>Mammopath</strong> was founded with a single vision: to revolutionize breast cancer treatment through AI and data-driven support. 
+      Our tools are designed to bring clarity and support during one of life’s most difficult journeys.
+    </p>
 
-    <p>We bring together doctors, engineers, and patients to build intelligent digital tools that empower care, improve outcomes, and reduce the burden of side effects. Every interaction with Mammopath is rooted in empathy, research, and the goal of making treatment more personalized.</p>
+    <p data-aos="fade-up" data-aos-delay="300">
+      We bring together doctors, engineers, and patients to build intelligent digital tools that empower care, improve outcomes, and reduce 
+      the burden of side effects. Every interaction with Mammopath is rooted in empathy, research, and the goal of making treatment more personalized.
+    </p>
 
-    <p>Our team believes that technology should be a partner in healing—not a barrier. That’s why we focus on making our platform easy to use, insightful, and meaningful for every patient and provider. Whether you're tracking symptoms or reviewing patient trends, Mammopath helps you make informed decisions faster.</p>
+    <p data-aos="fade-up" data-aos-delay="500">
+      Our team believes that technology should be a partner in healing—not a barrier. That’s why we focus on making our platform easy to use, 
+      insightful, and meaningful for every patient and provider. Whether you're tracking symptoms or reviewing patient trends, Mammopath helps you 
+      make informed decisions faster.
+    </p>
 
-    <p>We're not just building an app—we’re building a future where patients feel heard, providers feel empowered, and care becomes a shared journey guided by real-time insights and trust.</p>
+    <p data-aos="fade-up" data-aos-delay="700">
+      We're not just building an app—we’re building a future where patients feel heard, providers feel empowered, and care becomes a shared 
+      journey guided by real-time insights and trust.
+    </p>
   </main>
 
-  <footer class="footer">
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
     <img src="images/logo.gif" alt="Mammopath Logo" class="footer-logo" />
     <p>© 2025 Mammopath</p>
   </footer>
 
+  <!-- AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1500,
+      once: true
+    });
+  </script>
 </body>
 </html>
