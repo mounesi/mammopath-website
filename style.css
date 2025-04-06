@@ -1,25 +1,41 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ffe6f0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff0f6;
     color: #333;
 }
-.header {
-    background-color: #ff99c8;
+.header.hero {
+    background-image: linear-gradient(to right, #ff66a3, #ff99c8);
     color: white;
+    padding: 4rem 2rem;
     text-align: center;
-    padding: 2rem 1rem;
+}
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+.cta-button {
+    background-color: white;
+    color: #ff3399;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
 }
 .nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #ffcce5;
+    background-color: #ffd6e7;
     padding: 1rem;
 }
 .nav a {
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
     text-decoration: none;
     color: #880e4f;
     font-weight: bold;
@@ -30,35 +46,38 @@ body {
 .content {
     padding: 2rem;
 }
-section {
-    margin-bottom: 2rem;
+.split-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+.split-section img {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 12px;
+}
+.split-section.reverse {
+    flex-direction: row-reverse;
+}
+.split-section .text {
+    flex: 1;
+    padding: 1rem;
 }
 .footer {
     background-color: #ff99c8;
     color: white;
     text-align: center;
     padding: 1rem;
+    margin-top: 2rem;
 }
-form input, form textarea, form button {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-form button {
-    background-color: #ff66a3;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-form button:hover {
-    background-color: #e0558f;
-}
-@media (max-width: 600px) {
-    .nav {
+@media (max-width: 768px) {
+    .split-section {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+    }
+    .split-section.reverse {
+        flex-direction: column;
     }
 }
