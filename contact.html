@@ -6,6 +6,7 @@
   <title>Schedule a Demo - Mammopath</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -32,24 +33,35 @@
       <img src="images/lets-connect.png" alt="Schedule Demo" data-aos="fade-right" />
 
       <div class="text" style="max-width: 500px; margin: 0 auto;" data-aos="fade-left">
-        <form>
+        <form
+          action="https://formspree.io/f/xnnpoqpp"
+          method="POST"
+          id="demo-form"
+          onsubmit="return handleFormSubmit(event)"
+        >
           <label for="name">Your Name:</label>
-          <input id="name" type="text" required />
+          <input id="name" name="name" type="text" required />
 
           <label for="email">Your Email:</label>
-          <input id="email" type="email" required />
+          <input id="email" name="email" type="email" required />
 
           <label for="date">Preferred Date:</label>
-          <input id="date" type="date" required />
+          <input id="date" name="date" type="date" required />
 
           <label for="time">Preferred Time:</label>
-          <input id="time" type="time" required />
+          <input id="time" name="time" type="time" required />
 
           <label for="notes">Additional Notes:</label>
-          <textarea id="notes" rows="4" placeholder="Tell us what you'd like to explore..."></textarea>
+          <textarea id="notes" name="notes" rows="4" placeholder="Tell us what you'd like to explore..."></textarea>
+
+          <!-- <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div> -->
 
           <button type="submit">Request Demo</button>
         </form>
+
+        <div id="thank-you" style="display: none; margin-top: 2rem; color: green; font-weight: bold;">
+          ✅ Thank you! We’ve received your demo request and will reach out shortly.
+        </div>
       </div>
     </section>
   </main>
@@ -60,10 +72,37 @@
     <p>© 2025 Mammopath</p>
   </footer>
 
-  <!-- AOS Animation Script -->
+  <!-- AOS Animation -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 2000, once: true });
+  </script>
+
+  <!-- Form Handler -->
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          document.getElementById("demo-form").style.display = "none";
+          document.getElementById("thank-you").style.display = "block";
+        } else {
+          alert("Oops! Something went wrong. Please try again.");
+        }
+      }).catch(() => {
+        alert("There was a problem submitting the form.");
+      });
+
+      return false;
+    }
   </script>
 </body>
 </html>
