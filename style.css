@@ -311,10 +311,9 @@ body {
     flex: 1;
     max-width: 600px;
   }
-/* Ensure the nav is above the hero header */
-.nav {
+  .nav {
     position: relative;
-    z-index: 10; /* higher than the header */
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -324,23 +323,22 @@ body {
     font-weight: bold;
   }
   
-  /* Dropdown wrapper */
   .dropdown {
     position: relative;
     display: flex;
     align-items: center;
   }
   
-  /* Dropdown content overlay fix */
   .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000; /* high z-index to overlay header */
+    z-index: 1000;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     min-width: 180px;
+    padding: 5px 0;
   }
   
   .dropdown:hover .dropdown-content {
@@ -350,11 +348,16 @@ body {
   .dropdown-content a {
     display: block;
     padding: 10px 15px;
-    text-decoration: none;
     color: #333;
+    text-decoration: none;
   }
   
   .dropdown-content a:hover {
     background-color: #f8bbd0;
+  }
+  
+  .header.hero {
+    position: relative;
+    z-index: 1; /* ensure it's behind nav */
   }
   
