@@ -278,3 +278,83 @@ body {
     background-color: #e05591;
   }
   
+  /* Add or update in your CSS file */
+
+.split-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .split-section.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .split-section img {
+    width: 400px;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  
+  .split-section .text {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex: 1;
+    max-width: 600px;
+  }
+/* Ensure the nav is above the hero header */
+.nav {
+    position: relative;
+    z-index: 10; /* higher than the header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 15px 0;
+    background-color: #fde4ec;
+    font-weight: bold;
+  }
+  
+  /* Dropdown wrapper */
+  .dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Dropdown content overlay fix */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000; /* high z-index to overlay header */
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f8bbd0;
+  }
+  
