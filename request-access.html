@@ -13,6 +13,10 @@
       margin-top: 0.2rem;
       display: none;
     }
+    .error-border {
+      border-color: red !important;
+      background-color: #fff0f0;
+    }
   </style>
 </head>
 <body>
@@ -30,7 +34,6 @@
   <main class="content">
     <section class="split-section reverse" data-aos="fade-up">
       <img src="images/nda-image.png" alt="NDA Access Illustration" data-aos="fade-right" />
-
       <div class="text" style="max-width: 500px; margin: 0 auto;" data-aos="fade-left">
         <form
           action="https://formspree.io/f/xnnpoqpp"
@@ -38,61 +41,68 @@
           id="access-form"
           onsubmit="return handleFormSubmit(event)"
         >
-          <label for="firstName">Your Full Legal First Name (as appears on your legal documents) *</label>
+          <!-- User Fields -->
+          <label for="firstName">Your Full Legal First Name *</label>
           <input id="firstName" name="firstName" type="text" required />
           <div class="error-message" id="firstNameError">Please enter your first name.</div>
-
-          <label for="lastName">Your Full Legal Last Name (as appears on your legal documents) *</label>
+        
+          <label for="lastName">Your Full Legal Last Name *</label>
           <input id="lastName" name="lastName" type="text" required />
           <div class="error-message" id="lastNameError">Please enter your last name.</div>
-
-          <label for="phone">Phone Number (9 digits only) *</label>
-          <input id="phone" name="phone" type="tel" pattern="\d{9}" required />
-          <div class="error-message" id="phoneError">Phone number must be exactly 9 digits.</div>
-
+        
+          <label for="phone">Phone Number (10 digits only) *</label>
+          <input id="phone" name="phone" type="tel" pattern="\d{10}" required />
+          <div class="error-message" id="phoneError">Phone number must be exactly 10 digits.</div>
+        
           <label for="email">Email Address *</label>
           <input id="email" name="email" type="email" required />
           <div class="error-message" id="emailError">Please enter a valid email address.</div>
-
+        
           <label for="organization">Organization (if applicable):</label>
           <input id="organization" name="organization" type="text" />
-
-          <label for="nda">Non-Disclosure Agreement (scroll to read) *</label>
-          <div
-            style="height: 200px; overflow-y: scroll; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;"
-            id="nda-text"
-            onscroll="handleScroll()"
-          >
+        
+          <!-- NDA Static Text -->
+          <label for="nda">Non-Disclosure Agreement *</label>
+          <div style="height: 200px; overflow-y: scroll; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;" id="nda-text">
             <p><strong>Non-Disclosure Agreement (NDA) – Mammopath Access</strong></p>
-            <p>
-              This NDA ("Agreement") is made between the user requesting access to the Mammopath platform (“Recipient”) and Mammopath (“Discloser”). By submitting this form, Recipient agrees to the following terms:
-            </p>
+            <p>This NDA is made between the user requesting access and Mammopath. By submitting this form, you agree to:</p>
             <ul>
-              <li>You will not share, copy, or distribute any confidential information related to Mammopath, its platform, visual designs, features, user interface, business strategy, or backend code.</li>
-              <li>You will not record, screenshot, or store any information viewed during your access session without express written permission.</li>
-              <li>All access is provided solely for evaluation purposes and is non-transferable.</li>
-              <li>You may not reverse-engineer or attempt to reproduce any part of the platform.</li>
-              <li>You acknowledge that the disclosure of any confidential information without permission will result in legal consequences including but not limited to civil liability.</li>
-              <li>This agreement will remain in effect even if access is denied or discontinued in the future.</li>
-              <li>You confirm that the information you provide is accurate, and that you are acting in good faith in accordance with the intent of this agreement.</li>
+              <li>Not share or reproduce any confidential information.</li>
+              <li>No screenshots or recordings without permission.</li>
+              <li>Access is for evaluation only.</li>
+              <li>No reverse-engineering.</li>
+              <li>Legal consequences for breach of agreement.</li>
+              <li>This agreement remains in effect even after access ends.</li>
+              <li>You certify the accuracy of your submitted info.</li>
             </ul>
-            <p>
-              By entering your initials and submitting this form, you affirm that you understand and agree to the full terms of this agreement.
-            </p>
+            <p>By entering your initials and submitting this form, you affirm your agreement.</p>
           </div>
-          <div class="error-message" id="scrollError">Please scroll through the entire NDA before submitting.</div>
-
-          <label for="initials">Your Initials (must match first letters of your first & last name) *</label>
+        
+          <label for="initials">Your Initials *</label>
           <input type="text" id="initials" name="initials" maxlength="4" placeholder="e.g., JD" required />
           <div class="error-message" id="initialsError">Initials must match the first letters of your name.</div>
-
+        
           <label>
             <input type="checkbox" id="agreeNDA" required />
             I have read and agree to the NDA terms above.
           </label>
+        
+          <!-- ✅ Hidden static NDA summary sent to both parties -->
+          <input type="hidden" name="nda_summary" value="NDA Signed: The requester has agreed not to share or reproduce any confidential information, not to record or screenshot, only use access for evaluation, not reverse-engineer the platform, and understands legal consequences. This agreement remains in effect even after access ends." />
+        
+          <!-- ✅ Hidden subject line for email -->
+          <input type="hidden" name="_subject" value="Mammopath Access NDA Signed" />
+        
+          <!-- ✅ Try sending a copy to the user (may not work on Free Plan) -->
+          <input type="hidden" name="_replyto" id="email" />
+        
+          <!-- ❌ DO NOT USE _cc on Free Plan -->
+          <!-- <input type="hidden" name="_cc" value="armsohi@gmail.com" /> -->
+        
+          <button type="submit" id="submitBtn">Submit Access Request</button>
+        </form>    
 
-          <button type="submit" id="submitBtn" disabled>Submit Access Request</button>
-        </form>
+        <div id="submit-error-message" style="display: none; color: red; margin-top: 1rem;"></div>
 
         <div id="thank-you" style="display: none; margin-top: 2rem; color: green; font-weight: bold;">
           ✅ Thank you! Your request has been submitted. We’ll contact you shortly.
@@ -101,9 +111,8 @@
         <p style="margin-top: 2rem;">
           ← <a href="index.html">Back to Login</a>
         </p>
-
         <p style="margin-top: 2rem; font-size: 0.9rem; color: #555;">
-          Need help? Email <a href="mailto:armsohi@gmail.com">armsohi@gmail.com</a> for additional support or to manually sign the NDA.
+          Need help? Email <a href="mailto:armsohi@gmail.com">armsohi@gmail.com</a>
         </p>
       </div>
     </section>
@@ -119,101 +128,92 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 2000, once: true });
-  
-    let hasScrolledToEnd = false;
-  
-    function handleScroll() {
-      const ndaText = document.getElementById("nda-text");
-      if (ndaText.scrollTop + ndaText.clientHeight >= ndaText.scrollHeight) {
-        hasScrolledToEnd = true;
-        document.getElementById("scrollError").style.display = "none";
-        document.getElementById("submitBtn").disabled = false;
+
+    function showError(id, inputId, message, show) {
+      const errorEl = document.getElementById(id);
+      const inputEl = document.getElementById(inputId);
+      if (show) {
+        errorEl.style.display = 'block';
+        inputEl.classList.add('error-border');
+        return message;
+      } else {
+        errorEl.style.display = 'none';
+        inputEl.classList.remove('error-border');
+        return '';
       }
     }
-  
-    function showError(id, show) {
-      document.getElementById(id).style.display = show ? 'block' : 'none';
-    }
-  
+
     function handleFormSubmit(event) {
       event.preventDefault();
-  
+
+      document.getElementById("submit-error-message").style.display = "none";
+      document.getElementById("submit-error-message").textContent = "";
+
       let hasError = false;
-      let alertMessages = [];
-  
+      let messages = [];
+      let focusTarget = null;
+
       const firstName = document.getElementById("firstName").value.trim();
       const lastName = document.getElementById("lastName").value.trim();
       const initials = document.getElementById("initials").value.trim().toUpperCase();
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const agreeNDA = document.getElementById("agreeNDA").checked;
-  
-      // Validate First Name
+
       if (!firstName) {
-        showError("firstNameError", true);
-        alertMessages.push("First name is required.");
+        messages.push(showError("firstNameError", "firstName", "First name is required.", true));
+        focusTarget ||= document.getElementById("firstName");
         hasError = true;
       } else {
-        showError("firstNameError", false);
+        showError("firstNameError", "firstName", "", false);
       }
-  
-      // Validate Last Name
+
       if (!lastName) {
-        showError("lastNameError", true);
-        alertMessages.push("Last name is required.");
+        messages.push(showError("lastNameError", "lastName", "Last name is required.", true));
+        focusTarget ||= document.getElementById("lastName");
         hasError = true;
       } else {
-        showError("lastNameError", false);
+        showError("lastNameError", "lastName", "", false);
       }
-  
-      // Validate Phone
-      if (!/^\d{9}$/.test(phone)) {
-        showError("phoneError", true);
-        alertMessages.push("Phone number must be exactly 9 digits.");
+
+      if (!/^\d{10}$/.test(phone)) {
+        messages.push(showError("phoneError", "phone", "Phone number must be 10 digits.", true));
+        focusTarget ||= document.getElementById("phone");
         hasError = true;
       } else {
-        showError("phoneError", false);
+        showError("phoneError", "phone", "", false);
       }
-  
-      // Validate Email
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        showError("emailError", true);
-        alertMessages.push("Enter a valid email address.");
+
+      const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if (!validEmail) {
+        messages.push(showError("emailError", "email", "Enter a valid email address.", true));
+        focusTarget ||= document.getElementById("email");
         hasError = true;
       } else {
-        showError("emailError", false);
+        showError("emailError", "email", "", false);
       }
-  
-      // Validate Initials
+
       const expectedInitials = (firstName[0] + lastName[0]).toUpperCase();
       if (initials !== expectedInitials) {
-        showError("initialsError", true);
-        alertMessages.push(`Initials must match your name: expected "${expectedInitials}".`);
+        messages.push(showError("initialsError", "initials", `Initials must be "${expectedInitials}".`, true));
+        focusTarget ||= document.getElementById("initials");
         hasError = true;
       } else {
-        showError("initialsError", false);
+        showError("initialsError", "initials", "", false);
       }
-  
-      // NDA Scroll
-      if (!hasScrolledToEnd) {
-        showError("scrollError", true);
-        alertMessages.push("Please scroll through the entire NDA before submitting.");
-        hasError = true;
-      } else {
-        showError("scrollError", false);
-      }
-  
+
       if (!agreeNDA) {
-        alertMessages.push("You must agree to the NDA.");
+        messages.push("You must confirm that you have read and agreed to the NDA.");
         hasError = true;
       }
-  
+
       if (hasError) {
-        alert(alertMessages.join("\n"));
+        document.getElementById("submit-error-message").textContent = messages.filter(Boolean).join('\n');
+        document.getElementById("submit-error-message").style.display = "block";
+        if (focusTarget) focusTarget.focus();
         return false;
       }
-  
-      // If no errors, submit the form
+
       const form = event.target;
       fetch(form.action, {
         method: 'POST',
@@ -225,12 +225,16 @@
           form.style.display = "none";
           document.getElementById("thank-you").style.display = "block";
         } else {
-          alert("Something went wrong. Please try again.");
+          document.getElementById("submit-error-message").textContent =
+            "❌ Something went wrong. Please try again.";
+          document.getElementById("submit-error-message").style.display = "block";
         }
       }).catch(() => {
-        alert("There was a problem submitting your request.");
+        document.getElementById("submit-error-message").textContent =
+          "❌ There was a problem submitting your request.";
+        document.getElementById("submit-error-message").style.display = "block";
       });
-  
+
       return false;
     }
   </script>
