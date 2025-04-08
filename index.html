@@ -3,82 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <title>Mammopath Access</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 3rem;
-      background: #f9f9f9;
-      text-align: center;
-    }
-    input, button {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      margin: 0.5rem;
-      width: 90%;
-      max-width: 300px;
-    }
-    label {
-      display: block;
-      margin: 1rem auto;
-      text-align: left;
-      max-width: 320px;
-    }
-    button {
-      margin-top: 1.5rem;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Restricted Access</h1>
-  <p>Please enter your access credentials to continue.</p>
 
-  <label>
-    Full Legal First Name:
-    <input type="text" id="firstName" placeholder="First Name" autocomplete="off" required />
-  </label>
-  <label>
-    Full Legal Last Name:
-    <input type="text" id="lastName" placeholder="Last Name" autocomplete="off" required />
-  </label>
-  <label>
-    Access Code:
-    <input type="password" id="accessCode" placeholder="Enter access code" autocomplete="off" required />
-  </label>
-  <label>
-    <input type="checkbox" id="ndaCheckbox" />
-    I confirm that I have signed the NDA.
-  </label>
+  <!-- Header -->
+  <header class="header hero" data-aos="fade-down">
+    <div class="hero-content">
+      <img src="images/logo-nobg.png" alt="Mammopath Logo" class="logo" />
+      <h1>Restricted Access</h1>
+      <p class="tagline">Please confirm NDA and enter your access credentials</p>
+    </div>
+  </header>
 
-  <button onclick="checkCode()">Submit</button>
+  <!-- Main Content -->
+  <main class="content">
+    <section class="split-section" data-aos="fade-up">
+      <img src="images/secure-access.png" alt="Secure Access" data-aos="fade-right" />
 
-  <p style="margin-top: 2rem;">
-    Don’t have a code?
-    <a href="https://YOUR-NDA-FORM-LINK.com" target="_blank">Request Access Here</a>
-  </p>
+      <div class="text" style="max-width: 500px; margin: 0 auto;" data-aos="fade-left">
+        <form id="login-form" onsubmit="return checkCode()">
+          <label for="firstName">Full Legal First Name:</label>
+          <input type="text" id="firstName" placeholder="First Name" autocomplete="off" required />
 
+          <label for="lastName">Full Legal Last Name:</label>
+          <input type="text" id="lastName" placeholder="Last Name" autocomplete="off" required />
+
+          <label for="accessCode">Access Code:</label>
+          <input type="password" id="accessCode" placeholder="Enter access code" autocomplete="off" required />
+
+          <label>
+            <input type="checkbox" id="ndaCheckbox" required />
+            I confirm that I have signed the NDA.
+          </label>
+
+          <button type="submit">Log In</button>
+        </form>
+
+        <p style="margin-top: 1.5rem;">
+          Don’t have a code?
+          <a href="request-access.html" target="_blank">Request Access Here</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <img src="images/logo-nobg.png" alt="Mammopath Logo" class="footer-logo" />
+    <p>© 2025 Mammopath</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    const VALID_CODES = [
-      "letmein123",
-      "NDAsigned1",
-      "NDAsigned2",
-      "NDAsigned3"
-    ];
+    AOS.init({ duration: 2000, once: true });
 
-    function checkCode() {
+    const VALID_CODES = ["letmein123", "NDAsigned1", "NDAsigned2", "NDAsigned3"];
+
+    function checkCode(event) {
+      event.preventDefault();
       const firstName = document.getElementById("firstName").value.trim();
       const lastName = document.getElementById("lastName").value.trim();
       const code = document.getElementById("accessCode").value.trim();
       const ndaChecked = document.getElementById("ndaCheckbox").checked;
 
-      if (!firstName || !lastName || !code) {
-        alert("Please complete all fields.");
-        return;
-      }
-
-      if (!ndaChecked) {
-        alert("You must confirm that you have signed the NDA.");
-        return;
+      if (!firstName || !lastName || !code || !ndaChecked) {
+        alert("Please complete all fields and confirm NDA.");
+        return false;
       }
 
       if (VALID_CODES.includes(code)) {
@@ -86,6 +80,8 @@
       } else {
         alert("Invalid access code. Please request access.");
       }
+
+      return false;
     }
   </script>
 </body>

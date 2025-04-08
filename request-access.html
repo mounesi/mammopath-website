@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Request Access - Mammopath</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header hero" data-aos="fade-down">
+    <div class="hero-content">
+      <img src="images/logo-nobg.png" alt="Mammopath Logo" class="logo" />
+      <h1>Request Access</h1>
+      <p class="tagline">To view Mammopath, please read and agree to the NDA</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section class="split-section reverse" data-aos="fade-up">
+      <img src="images/lets-connect.png" alt="Request Access" data-aos="fade-right" />
+
+      <div class="text" style="max-width: 500px; margin: 0 auto;" data-aos="fade-left">
+        <form
+          action="https://formspree.io/f/xnnpoqpp"
+          method="POST"
+          id="access-form"
+          onsubmit="return handleFormSubmit(event)"
+        >
+          <label for="name">Full Legal Name:</label>
+          <input id="name" name="name" type="text" required />
+
+          <label for="email">Email Address:</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="organization">Organization (if applicable):</label>
+          <input id="organization" name="organization" type="text" />
+
+          <label for="nda">Non-Disclosure Agreement (scroll to read):</label>
+          <div style="height: 150px; overflow-y: scroll; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;" id="nda-text">
+            <p><strong>NDA Agreement Summary:</strong></p>
+            <p>
+              By requesting access to Mammopath, you agree not to share, copy, distribute, or make public any information contained within the Mammopath application, designs, content, features, code, or business strategy. This is a mutual NDA and applies whether access is granted or not. You also acknowledge that misuse or breach may result in legal action under confidentiality laws.
+            </p>
+            <p>
+              By submitting this form, you confirm that you are requesting access for internal evaluation only and will not share your credentials or materials without written permission.
+            </p>
+          </div>
+
+          <label>
+            <input type="checkbox" id="agreeNDA" required />
+            I have read and agree to the NDA terms above.
+          </label>
+
+          <button type="submit">Submit Access Request</button>
+        </form>
+
+        <div id="thank-you" style="display: none; margin-top: 2rem; color: green; font-weight: bold;">
+          ✅ Thank you! Your request has been submitted. We’ll contact you shortly.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" data-aos="fade-up">
+    <img src="images/logo-nobg.png" alt="Mammopath Logo" class="footer-logo" />
+    <p>© 2025 Mammopath</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 2000, once: true });
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          form.style.display = "none";
+          document.getElementById("thank-you").style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      }).catch(() => {
+        alert("There was a problem submitting your request.");
+      });
+
+      return false;
+    }
+  </script>
+</body>
+</html>
