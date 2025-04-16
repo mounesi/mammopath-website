@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="auth.html">Sign In / Sign Up</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="plan-price.html">Plan & Price</a>
+    <div class="dropdown">
+      <a href="#">Solutions</a>
+      <div class="dropdown-content">
+        <a href="patient-solution.html">Patient Solution</a>
+        <a href="provider-solution.html">Provider Solution</a>
+      </div>
+    </div>
+  </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mammopath Plans</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fff0f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(to right, #ff80ab, #ff4081);
+      color: white;
+    }
+
+    .hero-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-header p {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .plan {
+      background: white;
+      border-radius: 1rem;
+      border: 2px solid #f48fb1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      align-items: flex-start;
+    }
+
+    .plan h2 {
+      font-size: 1.5rem;
+      color: #b231a0;
+      margin: 0;
+    }
+
+    .plan .price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      color: #333;
+    }
+
+    .plan .subtext {
+      font-size: 0.95rem;
+      color: #777;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .plan ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+      width: 100%;
+    }
+
+    .plan ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .plan ul li::before {
+      content: "✔️";
+      position: absolute;
+      left: 0;
+    }
+
+    .beta {
+      font-size: 0.85rem;
+      color: #ff4081;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .cta-button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #ff4081;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #e73370;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-header">
+    <h1>Mammopath Subscription Plans</h1>
+    <p>Choose a plan that fits your needs. All paid plans include features from previous tiers.</p>
+  </header>
+
+  <div class="pricing-grid">
+
+    <!-- Trial -->
+    <div class="plan">
+      <h2>Trial</h2>
+      <p class="price">Free</p>
+      <p class="subtext">A great way to explore Mammopath's essential features</p>
+      <ul>
+        <li>Download PDF of Symptoms</li>
+        <li>Symptom Calendar View</li>
+      </ul>
+      <button class="cta-button" onclick="redirectToContact('Trial')">Start Trial</button>
+    </div>
+
+    <!-- Basic -->
+    <div class="plan">
+      <h2>Basic</h2>
+      <p class="price">$40/month</p>
+      <p class="subtext">For patients and clinics starting digital symptom tracking</p>
+      <ul>
+        <li>Everything in Trial</li>
+        <li>Support for Custom Symptoms</li>
+        <li>Custom Symptom Categories</li>
+        <li>Custom Symptom Lists</li>
+        <li>Preventative Care Mode</li>
+        <li>Post-Treatment Care <span class="beta">[Beta]</span></li>
+        <li>Supportive & Palliative Care <span class="beta">[Beta]</span></li>
+        <li>Comprehensive Treatment Tracker</li>
+        <li>Track Chemotherapy, Radiotherapy, etc.</li>
+      </ul>
+      <button class="cta-button" onclick="redirectToContact('Basic')">Choose Basic</button>
+    </div>
+
+    <!-- Pro -->
+    <div class="plan">
+      <h2>Pro</h2>
+      <p class="price">$50/month</p>
+      <p class="subtext">For providers who want AI-powered care tools</p>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>Smart Symptom Analytics <span class="beta">[Beta]</span></li>
+        <li>Smart Correlation Suggestions <span class="beta">[Beta]</span></li>
+        <li>Secure Patient-Provider Chat <span class="beta">[Beta]</span></li>
+        <li>Monthly Symptom & Treatment Report <span class="beta">[Beta]</span></li>
+        <li>AI Treatment Tips Assistant <span class="beta">[Beta]</span></li>
+      </ul>
+      <button class="cta-button" onclick="redirectToContact('Pro')">Choose Pro</button>
+    </div>
+
+    <!-- Premium -->
+    <div class="plan">
+      <h2>Premium</h2>
+      <p class="price">$70/month</p>
+      <p class="subtext">For institutions managing multiple patient groups</p>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>Patient Tagging & Custom Lists</li>
+        <li>Provider-Defined Patient Groups</li>
+        <li>Patient Community Support Groups <span class="beta">[Beta]</span></li>
+      </ul>
+      <button class="cta-button" onclick="redirectToContact('Premium')">Choose Premium</button>
+    </div>
+
+    <!-- A La Carte -->
+    <div class="plan">
+      <h2>A La Carte</h2>
+      <p class="price">Custom</p>
+      <p class="subtext">Advanced insights without a full upgrade</p>
+      <ul>
+        <li>AI-Powered Symptom Summarization <span class="beta">[Beta]</span></li>
+        <li>Clinical Trial Matching <span class="beta">[Beta]</span></li>
+      </ul>
+      <button class="cta-button" onclick="redirectToContact('A La Carte')">Buy Add-ons</button>
+    </div>
+
+  </div>
+
+  <script>
+    function redirectToContact(plan) {
+      window.location.href = `contact.html?plan=${encodeURIComponent(plan)}`;
+      // const encodedPlan = encodeURIComponent(`I’m interested in learning more about the ${plan} plan.`);
+      // window.location.href = `contact.html?plan=${encodedPlan}`;
+    }
+  </script>
+</body>
+</html>

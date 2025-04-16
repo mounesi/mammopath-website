@@ -15,6 +15,7 @@
     <a href="index.html">Home</a>
     <a href="auth.html">Sign In / Sign Up</a>
     <a href="about.html">About Us</a>
+    <a href="plan-price.html">Plan & Price</a>
     <a href="contact.html">Contact</a>
     <div class="dropdown">
       <a href="#">Solutions</a>
@@ -79,14 +80,21 @@
     <p>© 2025 Mammopath</p>
   </footer>
 
-  <!-- AOS Animation -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 2000, once: true });
-  </script>
 
-  <!-- Form Handler -->
-  <script>
+    // ✅ Fill "notes" field with plan name from URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const plan = urlParams.get('plan');
+      const notesField = document.getElementById('notes');
+      if (plan && notesField) {
+        notesField.value = `I’m interested in learning more about the ${decodeURIComponent(plan)} plan.`;
+      }
+    });
+
     function handleFormSubmit(event) {
       event.preventDefault();
       const form = event.target;
